@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #ffd6e8;
+    font-family: Arial, sans-serif;
+  }
+
+  @keyframes float {
+    from { transform: translateY(110vh); }
+    to   { transform: translateY(-20vh); }
+  }
+
+  /* HEART */
+  .heart {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 61, 127, 0.85);
+    transform: rotate(-45deg);
+    animation: float linear infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 61, 127, 0.85);
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -30px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: 30px;
+    top: 0;
+  }
+
+  /* SANVI TEXT – FIXED */
+  .heart span {
+    position: absolute;
+    top: 18px;
+    left: -25px;
+    width: 110px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: #ffffff;
+    z-index: 5;
+    transform: rotate(45deg);
+    pointer-events: none;
+
+    text-shadow:
+      0 0 6px #fff,
+      0 0 12px #ff99cc,
+      0 0 18px #ff4d88,
+      0 0 25px #ff0055;
+  }
+
+  /* EMOJIS */
+  .float {
+    position: absolute;
+    font-size: 34px;
+    animation: float linear infinite;
+    opacity: 0.9;
+    user-select: none;
+  }
+
+  /* CENTER BOX */
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  #yes {
+    background: #4CAF50;
+    color: white;
+  }
+
+  #no {
+    background: #f44336;
+    color: white;
+    position: absolute;
+  }
+</style>
+</head>
+<body>
+
+<script>
+  /* HEARTS WITH SANVI */
+  for (let i = 0; i < 35; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (6 + Math.random() * 8) + "s";
+
+    const t = document.createElement("span");
+    t.innerText = "Sanvi";
+    h.appendChild(t);
+
+    document.body.appendChild(h);
+  }
+
+  /* ROSES & TEDDYS */
+  const emojis = ["🌹", "🧸"];
+  for (let i = 0; i < 30; i++) {
+    const e = document.createElement("div");
+    e.className = "float";
+    e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.animationDuration = (5 + Math.random() * 7) + "s";
+    e.style.fontSize = (28 + Math.random() * 18) + "px";
+    document.body.appendChild(e);
+  }
+</script>
+
+<div class="box">
+  <h1>Will u be Valentine with the APV? ❤️</h1>
+  <button id="yes" onclick="yesClicked()">Yes</button>
+  <button id="no">No</button>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    noBtn.style.top  = Math.random() * (window.innerHeight - 120) + "px";
+  });
+
+  function yesClicked() {
+    document.body.innerHTML = `
+      <h1 style="text-align:center; margin-top:40vh;">
+        ✨💖 SANVI 💖✨<br>
+        i lubbbb u sanbiii mwahmwahmwahmwah 🌹🧸
+      </h1>
+    `;
+  }
+</script>
+
+</body>
+</html>
